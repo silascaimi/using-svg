@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .options {
+        width: 300px;
+        display: inline-block;
+        vertical-align: top;
+      }
+    </style>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+      <rect x="0" y="0" width="400" height="400" fill="transparent" stroke="black" />
+      <circle id="crust-outer" cx="200" cy="200" r="150" fill="transparent" />
+      <circle id="crust-inner" cx="200" cy="200" r="110" fill="transparent" />
+    </svg>
+
+    <div id="options" class="options">
+      <fieldset>
+        <legend>Please choose a crust</legend>
+        <label> <input type="radio" name="crust" value="pasty"  />Pasty<br /> </label>
+        <label> <input type="radio" name="crust" value="granham-crack" />Graham Crack<br /> </label>
+        <label> <input type="radio" name="crust" value="chocolate"  />Chocolate<br /> </label>
+        <label> <input type="radio" name="crust" value="none" checked />None </label>
+      </fieldset>
+    </div>
+
+    <script>
+      const crustElements = document.querySelectorAll('[name=crust]');
+      const crustOuter = document.getElementById('crust-outer');
+      const crustInner = document.getElementById('crust-inner');
+      document.getElementById('options').addEventListener('change', (e) => {
+        let colors = [];
+        switch (e.target.value) {
+          case 'none':
+            colors = ['transparent', 'transparent'];
+            break;
+          case 'pasty':
+            colors = ['#DECCB8', '#F2DFC9'];
+            break;
+          case 'granham-crack':
+            colors = ['#BA870D', '#DEA010'];
+            break;
+          case 'chocolate':
+            colors = ['#2E1802', '#422303'];
+            break;
+          default:
+            return;
+        };
+        crustOuter.setAttribute('fill', colors[0]);
+        crustInner.setAttribute('fill', colors[1]);
+      });
+    </script>
+  </body>
+</html>
